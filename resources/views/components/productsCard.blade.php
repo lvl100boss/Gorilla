@@ -1,7 +1,7 @@
 
 
 
-<div class="grid grid-cols-5 gap-5">
+<div class="grid grid-cols-5 gap-x-5 gap-y-8">
     {{-- cards --}}
     @for ($i = 1; $i <= 8; $i++)
         <div class="card">
