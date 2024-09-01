@@ -27,7 +27,7 @@
                 
                     {{-- Submit --}}
                 
-                    <button type="submit" class="btn w-full py-4 text-bold rounded-md links">Sign Up</button>
+                    <button type="submit" class="btn w-full py-4 text-bold rounded-md links outline outline-accent outline-offset-4 outline-1">Sign Up</button>
                 </form>
 
                 <div>

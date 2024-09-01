@@ -24,15 +24,15 @@
             {{-- right nav --}}
             <div>
                 <ul class="flex justify-between items-center gap-6 text-sm">
-                    <li class="links"><a href="{{ route('home') }}" class="text-accent font-semibold">HOME</a></li>
-                    <li class="links"><a href="" >PRODUCTS</a></li>
-                    <li class="links"><a href="" >ABOUT US</a></li>
-                    <li class="links"><a href="" >CONTACT</a></li>
+                    <li class="links"><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'text-accent' : 'text-white' }}">HOME</a></li>
+                    <li class="links"><a href="{{ route('products') }}" class="{{ request()->routeIs('products') ? 'text-accent' : 'text-white' }}">PRODUCTS</a></li>
+                    <li class="links"><a href="{{ route('aboutus') }}" class="{{ request()->routeIs('aboutus') ? 'text-accent' : 'text-white' }}">ABOUT US</a></li>
+                    <li class="links"><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'text-accent' : 'text-white' }}">CONTACT</a></li>
                     @guest
-                    <li class="links"><a href="{{ route('login') }}" >SIGN IN</a></li>
-                    <li class="links">
+                    <li class="links"><a href="{{ route('login') }}" class="{{ request()->routeIs('login') ? 'text-accent' : 'text-white' }}">LOG IN</a></li>
+                    <li class="links ">
                         <a href="{{ route('register') }}" class="">
-                            <button class="btn" >SIGN UP</button>
+                            <button class="btn outline outline-accent outline-offset-4 outline-1" >SIGN UP</button>
                         </a>
                     </li>
                     @endguest
@@ -42,7 +42,7 @@
                         @csrf
                         <li class="links">
                             
-                            <button type="submit" class="btn" >SIGN OUT</button>
+                            <button type="submit" class="btn outline outline-accent outline-offset-4 outline-1" >LOG OUT</button>
                             
                         </li>
                     </form>
@@ -54,9 +54,10 @@
     <main>
         {{ $slot }}
     </main>
-    <footer class="h-60 bg-footer flex justify-start">
-        <div class="flex flex-col items-start w-full     justify-center gap-2 max-w-screen-xl mx-auto">
-            <h1 class="email font-bold text-accent">QB202100175@WMSU.EDU.PH</h1>
+    <footer class="py-14 bg-footer flex justify-start">
+        <div class="flex flex-col items-center w-full     justify-center gap-2 max-w-screen-xl mx-auto">
+            <h1 class="email font-bold text-accent">EH202201066@WMSU.EDU.PH - SUAREZ</h1>
+            <h1 class="email font-bold text-accent">QB202100175@WMSU.EDU.PH - CADIZ</h1>
             <p>Advance Database System (CS135)</p>
             <p class="">Copyright 2024 Gorilla</p>
             <p class="">@GORILLA.INC</p>

@@ -6,9 +6,9 @@ use App\Http\Controllers\AuthController;
 Route::get('/', function () {
     return view('posts.index');
 })->name('home');
-
-
-
+Route::view('/contact', 'posts.contact')->name('contact');
+Route::view('/aboutus', 'posts.aboutus')->name('aboutus');
+Route::view('/products', 'posts.products')->name('products');
 
 Route::middleware('auth')->group(function(){
     // Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
