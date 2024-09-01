@@ -1,0 +1,160 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active  {
+        transition: background-color 5000s;
+        -webkit-text-fill-color: #fff !important;
+    }
+
+    .logo {
+        font-family: 'Playfair Display-italic', serif;
+        font-weight: 700;
+        letter-spacing: 0.1rem;
+        /* font-style: italic; */
+    }
+
+    .sect1-bg-img {
+        background-image: url('../../storage/app/public/web-images/sect1.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 89dvh;
+    }
+
+    body {
+        font-family: 'Archivo', sans-serif;
+        font-weight: 300;
+        /* height: 200vh; */
+    }
+    header {
+        box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    .punchline {
+        font-family: Playfair Display;
+        /* font-size: 6dvh; */
+        font-weight: bold;
+        color: white;
+        line-height: 7dvh;
+        /* margin-bottom: 1.5rem; */
+        letter-spacing: -0.1dvh;
+        text-shadow: -0.5dvh 0.5dvh 1px #000000fd;
+        
+      }
+
+    .section1 h1, p, button {
+        /* max-width: 25dvw; */
+        text-align: center;
+        text-wrap: balance;
+    }
+    .shop-now-button {
+        background-color: #00000059;
+        border: 0.35dvh dotted white;
+        /* margin-right: 3.65rem; */
+        /* border-radius: 5px; */
+        width: 100%;
+        color: white;
+        font-weight: 400;
+        
+        font-size: 2.5dvh;
+        cursor: pointer;
+        text-shadow: -0.1dvh 0.3dvh 1px #000000fd;
+      
+        backdrop-filter: blur(5px);
+        transition: background-color 0.2s, border 0.2s , border-radius 0.2s;
+    }
+    
+    .shop-now-button:hover {
+        background-color: #003f2da9;
+        border: 0.35dvh solid white;
+        border-radius: 5px;
+    }
+    
+    .shop-now-button:active {
+        background-color: #003f2de1;
+    }
+    .section-container {
+        max-width: 25dvw;
+        
+    }
+
+    footer {
+        font-family: 'Archivo';
+    }
+}
+
+@layer components {
+    img {
+        @apply w-full h-60 object-cover object-top rounded-lg;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="url"], textarea {
+        /* @apply block w-full rounded-md  border-0 p-2 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm bg-white; */
+        @apply block mb-5 w-full rounded-md border-0 py-4 px-6 text-white  placeholder:text-gray-500 bg-medium-dark text-sm focus:outline-none focus-within:bg-medium-dark;
+    }
+    label {
+        @apply block text-xs font-semibold text-accent mb-2;
+    }
+    header {
+        @apply bg-main-dark px-64 py-6 sticky top-0 z-50;
+    }
+    body {
+        @apply bg-main-dark text-white;
+    }
+    nav {
+        @apply flex justify-between items-center;
+    }
+
+    .links {
+        @apply hover:scale-110 transition-all active:scale-105;
+    }
+
+    .btn {
+        @apply bg-accent text-black font-semibold px-3 py-1 rounded-sm;
+    }
+
+    .error {
+        @apply text-red-500
+    }
+
+    .logo {
+        @apply text-4xl;
+    }
+    main {
+        /* @apply max-w-screen-xl mx-auto; */
+    }
+    .section1 {
+        @apply max-w-screen-xl mx-auto;
+    }
+    
+    
+    @font-face {
+        font-family: 'Playfair Display';
+        src: url('../../public/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+    }
+      
+    @font-face {
+        font-family: 'Playfair Display-italic';
+        src: url('../../public/fonts/Playfair_Display/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
+    }
+      
+    @font-face {
+        font-family: 'Archivo';
+        src: url('../../public/fonts/Archivo/Archivo-VariableFont_wdth_wght.ttf'),
+        url('../../public/fonts/Archivo/Archivo-Italic-VariableFont_wdth_wght.ttf');
+    }
+
+
+}

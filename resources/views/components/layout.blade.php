@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ env('APP_NAME') }}</title>
+    {{-- <link rel="icon" href="C:/Codes/Laravel/Gorilla/storage/app/public/web-images/Gorilla.png"> --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body>
+    <header>
+        <nav>
+            {{-- left nav --}}
+            <div>
+                {{-- logo --}}
+                <a href="{{ route('home') }}">
+                    <h1 class="logo">
+                        GO<span class="text-accent">RILLA</span>
+                    </h1>
+                </a>
+            </div>
+
+            {{-- right nav --}}
+            <div>
+                <ul class="flex justify-between items-center gap-6 text-sm">
+                    <li class="links"><a href="{{ route('home') }}" class="text-accent font-semibold">HOME</a></li>
+                    <li class="links"><a href="" >PRODUCTS</a></li>
+                    <li class="links"><a href="" >ABOUT US</a></li>
+                    <li class="links"><a href="" >CONTACT</a></li>
+                    @guest
+                    <li class="links"><a href="{{ route('login') }}" >SIGN IN</a></li>
+                    <li class="links">
+                        <a href="{{ route('register') }}" class="">
+                            <button class="btn" >SIGN UP</button>
+                        </a>
+                    </li>
+                    @endguest
+                    @auth 
+                    <li class="links"><a href="" >- HI, {{ Str::upper(auth()->user()->username) }} -</a></li>
+                    <form method="post" action="{{ route('logout') }}">
+                        @csrf
+                        <li class="links">
+                            
+                            <button type="submit" class="btn" >SIGN OUT</button>
+                            
+                        </li>
+                    </form>
+                    @endauth
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        {{ $slot }}
+    </main>
+    <footer class="h-60 bg-footer flex justify-start">
+        <div class="flex flex-col items-start w-full     justify-center gap-2 max-w-screen-xl mx-auto">
+            <h1 class="email font-bold text-accent">QB202100175@WMSU.EDU.PH</h1>
+            <p>Advance Database System (CS135)</p>
+            <p class="">Copyright 2024 Gorilla</p>
+            <p class="">@GORILLA.INC</p>
+            <p>Project Gorilla</p>
+        </div>
+    </footer>
+</body>
+</html>
