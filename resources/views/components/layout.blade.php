@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ env('APP_NAME') }}</title>
     {{-- <link rel="icon" href="C:/Codes/Laravel/Gorilla/storage/app/public/web-images/Gorilla.png"> --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/Icons/uicons-regular-rounded/css/uicons-regular-rounded.css', 'resources/css/Icons/uicons-regular-straight/css/uicons-regular-straight.css','resources/js/app.js'])
 </head>
 <body>
     <header>

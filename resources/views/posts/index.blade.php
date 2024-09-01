@@ -10,7 +10,19 @@
             </div>
         </div>
     </section>
-    <section >
+    <section class="mt-10 pb-20">
         
+        
+        <div class="max-w-screen-xl mx-auto pb-20">
+            <div class="flex w-full justify-center pt-20 pb-10">
+                <h1 class="text-3xl font-bold test">FEATURED <span class="text-accent">PRODUCTS</span></h1>
+            </div>
+            
+            <x-productsCard/>
+            
+        </div>
+        <p>
+            <a class="underline text-accent" href="{{ route('products') }}">View more</a>
+        </p>
     </section>
 </x-layout>

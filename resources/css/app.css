@@ -156,6 +156,13 @@
     .section1 {
         @apply max-w-screen-xl mx-auto;
     }
+
+    .card {
+        @apply bg-medium-dark rounded-md shadow-lg overflow-hidden;
+    }
+    .product-img {
+        @apply !rounded-none ;
+    }
     
     
     @font-face {
