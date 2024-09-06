@@ -8,6 +8,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        // 'accent' : '#21b68b',
         'accent' : '#21b68b',
         'main-dark' : 'rgb(20, 20, 20)',
         'medium-dark' : 'rgb(30, 30, 30)',
@@ -27,7 +28,10 @@ export default {
 
         // Complex site-specific column configuration
         'footer': '200px minmax(900px, 1fr) 100px',
-      }
+      },cursor: {
+        'grabbing': 'grabbing',
+        'grab': 'grab',
+      },
     },
   },
   plugins: [],

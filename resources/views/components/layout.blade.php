@@ -54,6 +54,7 @@
     <main>
         {{ $slot }}
     </main>
+    {{-- Footer Section --}}
     <footer class="py-14 bg-footer flex justify-start">
         <div class="flex flex-col items-start w-full     justify-center gap-2 max-w-screen-xl mx-auto">
             <h1 class="email font-bold text-accent">EH202201066@WMSU.EDU.PH - SUAREZ</h1>

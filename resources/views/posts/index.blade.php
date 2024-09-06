@@ -18,7 +18,26 @@
                 <h1 class="text-3xl font-bold test">FEATURED <span class="text-accent">PRODUCTS</span></h1>
             </div>
             
-            <x-productsCard/>
+            {{-- <p>{{ $name }}</p> --}}
+
+            
+            @if ($products->isEmpty())
+                <p>No products found.</p>
+            @else
+            <div class="draggable-container flex overflow-x-auto  hover:overflow-y-scroll gap-5 p-4 active:cursor-grabbing select-none">
+                @php
+                    $i = 1;
+                @endphp
+                @foreach ($products as $product)
+                    <div class="min-w-[14.6rem] cursor-pointer active:pointer-events-none ">
+                        <x-productsCard :product="$product" :i="$i" />
+                    </div>
+                    @php
+                        $i++;
+                    @endphp
+                @endforeach
+            </div>
+            @endif
             
         </div>
         <p>

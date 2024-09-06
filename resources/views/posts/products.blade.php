@@ -1,8 +1,7 @@
 <x-layout>
-    
-    
     <section>
-        <div class="max-w-screen-xl mx-auto pb-20">
+        <div class="max-w-screen-xl mx-auto pb-20 mb-5">
+            {{-- Title --}}
             <div class="flex w-full justify-center pt-20 pb-10">
                 <h1 class="text-3xl font-bold test">PRO<span class="text-accent">DUCTS</span></h1>
             </div>
@@ -22,10 +21,25 @@
                     </button>
                 </form>
             </div>
-            <x-productsCard/>
-
+        {{-- Cards --}}
+            @if ($products->isEmpty())
+            <p>No products found.</p>
+            @else
+            <div class="grid grid-cols-5 gap-x-5 gap-y-8 mb-8">
+                @php
+                    $i = 1;
+                @endphp
+                @foreach ($products as $product)
+                    <x-productsCard :product="$product" :i="$i" />
+                    @php
+                        $i++;
+                    @endphp
+                @endforeach
+            </div>
+            @endif
+            <div>
+                {{ $products->links() }}
+            </div>
         </div>
-
-
     </section>
 </x-layout>
