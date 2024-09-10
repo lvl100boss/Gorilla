@@ -22,6 +22,7 @@
                 </form>
             </div>
         {{-- Cards --}}
+            {{-- Demonstration --}}
             @if ($products->isEmpty())
             <p>No products found.</p>
             @else
