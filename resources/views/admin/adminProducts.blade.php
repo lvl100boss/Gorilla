@@ -74,11 +74,22 @@
                         {{ $product->category }} 
                     </td>
                     <td class="text-left  p-5 align-top">{{ $product->description }}</td>
-                    <td class="text-left  p-5 align-top">&#8369;{{ $product->price }}</td>
+                    <td class="text-left  p-5 align-top">
+                        <div>
+                            <div class="mb-4">
+                                &#8369;{{ $product->price }}
+                            </div>
+                            @if ($product->discount > 0)
+                                <div>
+                                    Listed Price: &#8369;{{ $product->price - $product->discount }}
+                                </div>
+                            @endif
+                        </div>
+                    </td>
                     <td class="text-left  p-5 align-top">&#8369;{{ $product->discount }}</td>
                     <td class="text-left  p-5 align-top">{{ $product->stock }}</td>
 
-                    <td class="text-left p-5">
+                    <td class="align-top p-7">
                         <div class="flex flex-col gap-10 h-full items-center justify-center">
                             <div class="">
                                 <i class="fi fi-rs-pencil hover:text-accent cursor-pointer"></i>
