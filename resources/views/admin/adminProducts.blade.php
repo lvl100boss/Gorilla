@@ -1,7 +1,7 @@
 <x-layout>
     <div class="flex">
         <x-adminSidebar/>
-        <div class="px-28 py-10 flex-1 flex flex-col gap-10"> 
+        <div class="px-28 py-10 px-10 flex-1 flex flex-col gap-10"> 
             {{-- Contents here --}}
             <div class="flex items-center justify-between gap-10 ">
                 <div>
@@ -51,6 +51,7 @@
                     <th class="text-left  p-5">Price</th>
                     <th class="text-left  p-5">Discount</th>
                     <th class="text-left  p-5">Stock</th>
+                    <th class="text-left  p-5">Status</th>
                     <th class="text-left  p-5">Actions</th>
                 </tr>
                 @foreach ($products as $product)
@@ -88,15 +89,39 @@
                     </td>
                     <td class="text-left  p-5 align-top">&#8369;{{ $product->discount }}</td>
                     <td class="text-left  p-5 align-top">{{ $product->stock }}</td>
+                    <td class="text-left  p-5 align-top">
+                        @if ($product->delete_status == 1)
+                            <span class="text-red-500">Deleted</span>
+                        @elseif ($product->stock == 0)
+                            <span class="text-yellow-500">Out of Stock</span>
+                        @else
+                            <span class="text-green-500">Available</span>
+                        @endif
+                    </td>
 
                     <td class="align-top p-7">
                         <div class="flex flex-col gap-10 h-full items-center justify-center">
                             <div class="">
-                                <i class="fi fi-rs-pencil hover:text-accent cursor-pointer"></i>
+                                <a href="{{ route('products.edit', $product->id) }}">
+                                    <i class="fi fi-rs-pencil hover:text-accent cursor-pointer"></i>
+                                </a>
                             </div>
                             <div class="">
-                                <i class="fi fi-rs-trash hover:text-red-600 cursor-pointer"></i>
+                                
+                                <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"><i class="fi fi-rs-trash hover:text-red-600 cursor-pointer"></i></button>
+                                </form>
                             </div>
+                            @if($product->delete_status == 1) <!-- Check if the product is soft deleted -->
+                                <div>
+                                    <form action="{{ route('products.restore', $product->id) }}" method="POST" class="inline-block">
+                                        @csrf
+                                        <button type="submit" ><i class="fi fi-rs-time-past hover:text-orange-400"></i></button>
+                                    </form>
+                                </div>
+                            @endif
                         </div>
                     </td>
                 </tr>

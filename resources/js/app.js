@@ -1,21 +1,20 @@
 import './bootstrap';
 
 window.showPreview = function(event) {
+    const fileInput = event.target;
     const preview = document.getElementById('preview');
-    const file = event.target.files[0];
-    const reader = new FileReader();
 
-    reader.onload = function(e) {
-        preview.src = e.target.result; // Set the preview to the selected image
-        preview.classList.remove('hidden'); // Show the preview
-        preview.classList.add('block'); // Add block display
-    }
+    // Check if there's a file selected
+    if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
 
-    if (file) {
-        reader.readAsDataURL(file); // Convert the file to base64 URL
-    } else {
-        preview.src = ''; // Clear the preview
-        preview.classList.add('hidden'); // Hide the preview
+        // Set the image source to the selected file
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+        };
+
+        // Read the file as DataURL
+        reader.readAsDataURL(fileInput.files[0]);
     }
 }
 window.onload = function() {

@@ -9,9 +9,9 @@
                 </div>
                 @if(session('success'))
                 <div id="success-message" class="w-full flex justify-center">
-                    <div class="font-bold bg-accent text-black py-2 px-20 text-lg w-full text-center mb-10">{{ session('success') }}Product Added Successfully!</div>
+                    <div class="font-bold bg-accent text-black py-2 px-20 text-lg w-full text-center mb-10">{{ session('success') }}</div>
                 </div>
-                @endif
+                @endif  
 
                 <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data"
                 class="grid grid-cols-2 gap-20">
@@ -26,7 +26,7 @@
                             </div>
                             
                             <img id="preview" src="{{ asset('storage/' . old('image')) }}" alt="Image Preview" class="hidden mt-4 rounded-lg  h-[45rem]">
-
+                            
                         </div>
                     </div>
 
