@@ -39,7 +39,9 @@
             @endphp
 
             
-
+            <div>
+                {{ $products->links() }}
+            </div>
             <table class="table-auto">
                 <tr class="bg-medium-dark">
                     <th class="text-left  p-5">No.</th>
