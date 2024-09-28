@@ -43,7 +43,13 @@ class AuthController extends Controller
 
         //Try Login
         if (Auth::attempt($fields, $request->remember)) {
-            return redirect() -> intended();
+            $user = Auth::user(); 
+            if ($user->userType ==='admin') {
+                return redirect() -> route('admin_dashboard');
+            } else {
+                return redirect() -> intended();
+            }
+
         } else {
             return back()->withErrors([
                 'failed' => 'The provided credentials do not match our records.'

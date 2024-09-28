@@ -6,7 +6,7 @@
     <div class="card">
         {{-- Photo --}}
         <div class="">
-            <img class="product-img h-80" src="{{ asset('storage/temporary-pics/tshirt'.$i.'.jpg') }}" alt="{{ $product->name }}">
+        <img class="product-img h-80" src="{{ asset('storage/'. $product->image) }}" alt="{{ $product->name }}">
         </div>  
         {{-- Details --}}
         <div class="py-3">

@@ -13,9 +13,9 @@
                 </button>
             
                 {{-- Search Bar --}}
-                <form class="w-96 relative !mb-0">
+                <form class="w-96 relative !mb-0" method="GET" action="{{ route('searchProducts') }}">
                     @csrf
-                    <input class="!mb-0" type="search" name="search" id="search" placeholder="Search">
+                    <input class="!mb-0" type="text" name="search" id="search" placeholder="Search Product">
                     <button type="submit" class="!mb-0  absolute right-5 top-4">
                         <i class="fi fi-rr-search"></i>
                     </button>

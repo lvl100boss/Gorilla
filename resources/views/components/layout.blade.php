@@ -37,7 +37,7 @@
                     </li>
                     @endguest
                     @auth 
-                    <li class="links"><a href="" >- HI, {{ Str::upper(auth()->user()->username) }} -</a></li>
+                    <li class="links"><a href="{{ route('admin_products') }}" >- HI, {{ Str::upper(auth()->user()->username) }} -</a></li>
                     <form method="post" action="{{ route('logout') }}">
                         @csrf
                         <li class="links">

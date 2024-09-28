@@ -21,8 +21,16 @@ class ProductController extends Controller
         return view('posts.products', ['products' => $products]);
     }
 
-    
-    
+    public function searchProducts(Request $request)
+    {
+        $searchTerm = $request->input('search');
+        $products = Product::where('name', 'like', '%' . $searchTerm . '%')
+            ->latest()
+            ->paginate(15);
+        return view('posts.products', ['products' => $products]);
+    }
 
     
+    
+   
 }

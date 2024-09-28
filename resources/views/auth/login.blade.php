@@ -15,7 +15,7 @@
                     {{-- Password --}}
                     <div class="mb-16">
                         <label for="password">Password @error('password') <span class="error text-left ml-2">{{ $message }}</span> @enderror</label>
-                        <input type="password" name="password" placeholder="Password" class="@error('password') !ring-red-500 @enderror">
+                        <input type="password" name="password" placeholder="Password" value="{{ old('password') }}" class="@error('password') !ring-red-500 @enderror">
                     </div>
                 
                     {{-- Remember CheckBox --}}

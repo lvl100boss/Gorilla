@@ -21,7 +21,7 @@
                     {{-- Password --}}
                     <div class="mb-12">
                         <label for="password">Password @error('password') <span class="error text-left ml-2">{{ $message }}</span> @enderror</label>
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password" placeholder="Password" value="{{ old('password') }}">
                         <input type="password" name="password_confirmation" placeholder="Confirm Password">
                     </div>
                 
