@@ -2,19 +2,28 @@
 
 
     {{-- @foreach ($products as $product) --}}
-        
-    <div class="card">
+        @php
+            $listed_price = $product->price - $product->discount;
+            $discount_percent = ($product->discount / $product->price) * 100;
+            $discount_percent = round($discount_percent);
+        @endphp
+    <div class="card cursor-pointer group">
         {{-- Photo --}}
-        <div class="">
-        <img class="product-img h-80" src="{{ asset('storage/'. $product->image) }}" alt="{{ $product->name }}">
+        <div class="overflow-hidden relative">
+            <img class="product-img h-80 group-hover:scale-110 transition-transform ease-in-out" src="{{ asset('storage/'. $product->image) }}" alt="{{ $product->name }}">
+            @if ($discount_percent >= 1)
+                <div class="absolute top-2 right-0 bg-medium-dark text-white px-2 py-1 rounded-sm text-xs">{{ $discount_percent }}% OFF</div> {{-- Discount Badge --}}
+            @endif
         </div>  
         {{-- Details --}}
-        <div class="py-3">
+        <div class="p-3">
             <p class="opacity-30 text-sm mb-2">{{ $product->category }}</p> {{-- Category --}}
-            <p class="font-bold mb-2">{{ $product->name }}</p> {{-- Product Name --}}
-            <div class="flex w-full justify-center gap-2 opacity-30"> {{-- Price --}}
-                <span class="text line-through"> &#8369;{{ $product->price }}</span> {{-- Original Price --}}
-                <span>&#8369;{{ $product->discount }}</span> {{-- Discounted Price --}}
+            <p class="font-bold mb-2 truncate hover:text-clip overflow-flow">{{ $product->name }}</p> {{-- Product Name --}}
+            <div class="flex w-full justify-center gap-2"> {{-- Price --}}
+                @if ($product->discount > 0)
+                    <span class="text line-through opacity-30"> &#8369;{{ $product->price }}</span> {{-- Original Price --}}   
+                @endif
+                <span class="opacity-70">&#8369;{{ $listed_price }}</span> {{-- Discounted Price --}}
             </div>
         </div>
     </div>
