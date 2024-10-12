@@ -35,7 +35,23 @@
                     @php
                         $i++;
                     @endphp
-                @endforeach
+                    
+                    {{-- EDITED. add to cart button here
+                    <form action="{{ route('cart.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="hidden" name="name" value="{{ $product->name }}">
+                        <input type="hidden" name="image" value="{{ $product->image }}">
+                        <input type="hidden" name="category" value="{{ $product->category }}">
+                        <input type="hidden" name="description" value="{{ $product->description }}">
+                        <input type="hidden" name="price" value="{{ $product->price }}">
+                        <input type="hidden" name="discount" value="{{ $product->discount }}">
+                        <input type="hidden" name="stock" value="{{ $product->stock }}">
+                    
+                        <button type="submit">Add to Cart</button>
+                    </form> --}}
+                    
+                    @endforeach
             </div>
             @endif
             <div>

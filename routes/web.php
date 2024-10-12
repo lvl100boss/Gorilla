@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 
 // Routes for ProductController
 Route::get('/', [ProductController::class, 'index'])->name('home');
@@ -12,7 +13,8 @@ Route::resource('posts', ProductController::class);
 
 Route::get('/products', [ProductController::class, 'show'])->name('products');
 
-
+//EDITED. GO TO THE PRODUCT_DETAIL PAGE AND GET THE DETAILS OF THE PRODUCT
+Route::get('/products/{id}', [ProductController::class, 'show_detail'])->name('show_details');
 
 // Static pages
 Route::view('/contact', 'posts.contact')->name('contact');
@@ -26,6 +28,15 @@ Route::get('/searchProducts', [ProductController::class, 'searchProducts'])->nam
 //for Auth routes
 Route::middleware('auth')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::middleware(['auth', 'admin'])-> group(function () {
+
+        //EDITED. this is for the add to cart
+        Route::resource('cart', CartController::class);
+        Route::get('/Shopping/cart', [CartController::class, 'index'])->name('cart_page');
+
+    });
+
 });
 
 //for Guest Routes

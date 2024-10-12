@@ -38,6 +38,15 @@
                     @endguest
                     @auth 
                     <li class="links"><a href="{{ route('admin_products') }}" >- HI, {{ Str::upper(auth()->user()->username) }} -</a></li>
+                    
+                    {{-- EDITED. this is for user cart, admin should not be able to access the cart--}}
+                    @if (Auth()->user()->userType !== 'admin')
+
+                        {{-- added this --}}
+                        <li class="links"><a href="{{ route('cart_page') }}" > Cart</a></li>
+                    
+                    @endif
+                
                     <form method="post" action="{{ route('logout') }}">
                         @csrf
                         <li class="links">

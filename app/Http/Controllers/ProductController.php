@@ -30,7 +30,18 @@ class ProductController extends Controller
         return view('posts.products', ['products' => $products]);
     }
 
-    
+    //EDITED.
+    //function to get single product to view full product's details
+    public function show_detail($id)
+    {
+        $product = Product::find($id);
+
+        if ($product) {
+            return view('posts.product_detail', ['product' => $product]);
+        }
+
+        return redirect()->back()->with('error', 'Product not found');
+    }
     
    
 }

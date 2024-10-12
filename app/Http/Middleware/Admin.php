@@ -17,12 +17,21 @@ class Admin
     public function handle(Request $request, Closure $next): Response
     {
         // Check if the user is an admin
-        if (Auth::user()->userType != 'admin') {
-            // If not an admin, redirect them to their user profile
+        if (Auth::check() && Auth::user()->userType == 'admin') {
+
+            //EDITED. If the admin tries to access the cart page, redirect them
+            if ($request->routeIs('cart_page') || $request->routeIs('cart.*')) {
+                return redirect()->route('admin_dashboard');
+            }
+
+        } else {
+            
+            // If the user is not an admin, you can redirect them or handle non-admin logic here
             return redirect()->back();
+        
         }
 
-        // If the user is an admin, continue with the request
+        // If the user is an admin and not accessing restricted routes, continue with the request
         return $next($request);
     }
 }

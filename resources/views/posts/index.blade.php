@@ -29,13 +29,16 @@
                     $i = 1;
                 @endphp
                 @foreach ($products as $product)
-                    <div class="min-w-[14.6rem] cursor-pointer active:pointer-events-none ">
+
+                {{-- EDITED. remove the "active:pointer-events-none" in the class to go to the product_detail page --}}
+                    <div class="min-w-[14.6rem] cursor-pointer"> 
                         <x-productsCard :product="$product" :i="$i" />
                     </div>
                     @php
                         $i++;
                     @endphp
                 @endforeach
+                
             </div>
             @endif
             
