@@ -10,7 +10,9 @@
     <div class="card cursor-pointer group">
         {{-- Photo --}}
         <div class="overflow-hidden relative">
-            <img class="product-img h-80 group-hover:scale-110 transition-transform ease-in-out" src="{{ asset('storage/'. $product->image) }}" alt="{{ $product->name }}">
+            @if ($product->images->isNotEmpty())
+                <img class="product-img h-80 group-hover:scale-110 transition-transform ease-in-out" src="{{ asset('storage/' . $product->images->first()->image_path) }}" alt="{{ $product->name }}">
+            @endif
             @if ($discount_percent >= 1)
                 <div class="absolute top-2 right-0 bg-medium-dark text-white px-2 py-1 rounded-sm text-xs">{{ $discount_percent }}% OFF</div> {{-- Discount Badge --}}
             @endif

@@ -18,15 +18,17 @@
                     @csrf
 
                     <div class="">
-                        <div class="mb-4">
-                            <label for="image">Product Image: @error('image') <span class="error text-left ml-2">{{ $message }}</span> @enderror</label>
-                            <div class="file-input">
-                                <input type="file" name="image" id="image" accept="image/*" onchange="showPreview(event)">
-                                <label for="image" class="btn text-base">Choose an image</label>
+                        <div class="">
+                            <div class="mb-4">
+                                <label for="image">Product Image: @error('image') <span class="error text-left ml-2">{{ $message }}</span> @enderror</label>
+                                <div class="file-input group">
+                                    <input type="file" name="images[]" id="images" multiple accept="image/*" onchange="showPreview(event)" >
+                                    <label for="image" class="border border-accent p-2 rounded-md text-base group-hover:bg-accent group-hover:text-black transition-all ease-in-out">Choose an image</label>
+                                </div>
+                                
+                                <img id="preview" src="{{ asset('storage/' . old('image')) }}" alt="Image Preview" class="hidden mt-4 rounded-lg  h-[45rem]">
+    
                             </div>
-                            
-                            <img id="preview" src="{{ asset('storage/' . old('image')) }}" alt="Image Preview" class="hidden mt-4 rounded-lg  h-[45rem]">
-                            
                         </div>
                     </div>
 

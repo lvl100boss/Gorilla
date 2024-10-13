@@ -11,7 +11,6 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'image',
         'category',
         'description',
         'price',
@@ -19,4 +18,11 @@ class Product extends Model
         'stock',
         'delete_status',
     ];
+
+    // app/Models/Product.php
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
 }

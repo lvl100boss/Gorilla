@@ -14,7 +14,6 @@ export default {
         'medium-dark' : 'rgb(30, 30, 30)',
         'light-dark' : 'rgb(40, 40, 40)',
         'lightest-dark' : 'rgb(50, 50, 50)',
-        
         'footer' : '#181818'
       },
       fontFamily: {

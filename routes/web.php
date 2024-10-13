@@ -37,7 +37,7 @@ Route::middleware('guest')->group(function(){
 });
 
 // admin routes
-// Route::prefix('admin')->middleware('auth')->group(function () {
+Route::middleware('auth', 'admin')->group(function () {
     // Create and store product routes
     Route::get('/admin/addproducts', function () {
         return view('admin.addProduct');
@@ -75,6 +75,4 @@ Route::middleware('guest')->group(function(){
     Route::get('admin/history', function () {
         return view('admin.adminHistory');
     })->name('admin_history');
-// });
-
-// For admin routes
+});

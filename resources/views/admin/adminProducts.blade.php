@@ -66,7 +66,11 @@
                     <td class="text-center  p-5">{{ $i }}</td>
                     <td class="p-5 flex flex-col gap-4">
                         
-                        <img class="product-img h-32 w-32" src="{{ asset('storage/'. $product->image) }}" alt="{{ $product->name }}">
+                        @if($product->images->isNotEmpty())
+                            <img class="product-img h-32 w-32" src="{{ asset('storage/' . $product->images->first()->image_path) }}" alt="{{ $product->name }}">
+                        @else
+                            <img class="product-img h-32 w-32" src="{{ asset('storage/default-image.png') }}" alt="Default Image">
+                        @endif
                         
                         <p class="font-semibold text-left">{{ $product->name }}</p>
                         
@@ -132,7 +136,7 @@
             </table>
             
             @endif
-            <div>
+            <div class="">
                 {{ $products->links() }}
             </div>
         </div>

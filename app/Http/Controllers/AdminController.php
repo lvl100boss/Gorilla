@@ -4,24 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductImage;
 class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        // return view(\)
-    }
 
     /**
      * Display the specified resource.
      */
     public function show()
     {
-        $products = Product::latest()->paginate(15);
+        // Fetch the latest products with their associated images
+        $products = Product::with('images')->latest()->paginate(15);
+
         return view('admin.adminProducts', ['products' => $products]);
     }
+
     /**
      * Search for products.
      */
@@ -46,27 +46,35 @@ class AdminController extends Controller
 
     public function update(Request $request, $id)
     {
-        $product = Product::findOrFail($id);
-
+        // Retrieve the product and eager load its images
+        $product = Product::with('images')->findOrFail($id);
+        
         // Validate the incoming data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // Image is optional during edit
+            'images.*' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:24048', // Updated to match input name
             'category' => 'required|string|max:255',
-            'description' => 'string',
+            'description' => 'nullable|string', // Make description optional
             'price' => 'required|integer',
             'discount' => 'nullable|integer',
             'stock' => 'required|integer',
         ]);
 
-        // Handle image upload if new image is provided
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $validatedData['image'] = $imagePath; // Update the image path
-        }
-
-        // Update the product in the database
+        // Update the product in the database without images first
         $product->update($validatedData);
+
+        // Handle image upload if new images are provided
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('product_images', 'public');
+
+                // Add new images to the product_images table
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_path' => $imagePath,
+                ]);
+            }
+        }
 
         return redirect()->route('admin_products')->with('success', 'Product updated successfully!');
     }
@@ -92,7 +100,7 @@ class AdminController extends Controller
     public function store(Request $request) {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:24048',
+            'image.*' => 'required|image|mimes:jpg,jpeg,png,webp|max:24048',
             'category' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|integer',
@@ -102,20 +110,28 @@ class AdminController extends Controller
         
 
         // Handle image upload
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $validatedData['image'] = $imagePath; // Save the image path
-        }
+        
 
         $product = Product::create([
             'name' => $validatedData['name'],
-            'image' => $validatedData['image'],
             'category' => $validatedData['category'],
             'description' => $validatedData['description'],
             'price' => $validatedData['price'],
             'discount' => $validatedData['discount'],
             'stock' => $validatedData['stock'],
         ]);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('product_images', 'public');
+    
+                // Save the image path in the product_images table
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_path' => $imagePath,
+                ]);
+            }
+        }
         
         return redirect()->route('admin_add_products')->with('success', 'Product added successfully!');
 

@@ -154,7 +154,7 @@
     }
 
     .links {
-        @apply hover:scale-110 transition-all;
+        @apply hover:scale-105 transition-all text-[0.8rem];
     }
 
     .btn {
@@ -166,7 +166,7 @@
     }
 
     .logo {
-        @apply text-[2.5rem];
+        @apply text-4xl;
     }
     main {
         /* @apply max-w-screen-xl mx-auto; */
