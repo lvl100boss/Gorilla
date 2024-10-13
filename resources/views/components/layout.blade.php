@@ -37,7 +37,15 @@
                     </li>
                     @endguest
                     @auth 
-                    <li class="links"><a href="{{ route('admin_products') }}" >- HI, {{ Str::upper(auth()->user()->username) }} -</a></li>
+                    <div class="relative group">
+                        <li class="links"><a href="{{ route('admin_products') }}" >- HI, {{ Str::upper(auth()->user()->username) }} -</a></li>
+                        @if (Auth()->user()->userType !== 'admin')
+                        <div class="hidden bg-medium-dark absolute shadow-lg rounded-lg -right-6 overflow-hidden w-32 group-hover:block">
+                            <li class="py-4 px-5 hover:bg-light-dark hover:text-accent"><a href="{{ route('profile') }}">ACCOUNT</a></li>
+                            <li class="py-4 px-5 hover:bg-light-dark hover:text-accent"><a href="">CART</a></li>
+                        </div>
+                        @endif 
+                    </div>
                     <form method="post" action="{{ route('logout') }}">
                         @csrf
                         <li class="links">

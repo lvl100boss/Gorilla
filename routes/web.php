@@ -16,6 +16,8 @@ Route::get('/products', [ProductController::class, 'show'])->name('products');
 // Static pages
 Route::view('/contact', 'posts.contact')->name('contact');
 Route::view('/aboutus', 'posts.aboutus')->name('aboutus');
+Route::view('/profile', 'user.profile')->name('profile');
+
 
 
 
@@ -25,7 +27,10 @@ Route::get('/searchProducts', [ProductController::class, 'searchProducts'])->nam
 //for Auth routes
 Route::middleware('auth')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    
+    
 });
+
 
 //for Guest Routes
 Route::middleware('guest')->group(function(){
