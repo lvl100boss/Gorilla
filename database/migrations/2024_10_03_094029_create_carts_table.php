@@ -13,18 +13,10 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained(); //guests will be excempted from this
-            $table->foreignId('product_id')->constrained();
-            $table->string('name');
-            $table->string('image');
-            $table->string('category');
-            $table->text('description')->nullable();
-            $table->integer('price');
-            $table->integer('discount')->nullable();
-            $table->integer('stock');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Cascade on user deletion
+            $table->foreignId('product_id')->constrained()->onDelete('cascade'); // Cascade on product deletion
             $table->integer('quantity')->default(1);
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 

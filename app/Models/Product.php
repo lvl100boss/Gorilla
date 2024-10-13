@@ -19,4 +19,9 @@ class Product extends Model
         'stock',
         'delete_status',
     ];
+
+    public function cartItems()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

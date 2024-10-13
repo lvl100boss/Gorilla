@@ -28,14 +28,10 @@ Route::get('/searchProducts', [ProductController::class, 'searchProducts'])->nam
 //for Auth routes
 Route::middleware('auth')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-    Route::middleware(['auth', 'admin'])-> group(function () {
-
-        //EDITED. this is for the add to cart
-        Route::resource('cart', CartController::class);
-        Route::get('/Shopping/cart', [CartController::class, 'index'])->name('cart_page');
-
-    });
+    
+    //EDITED. this is for the add to cart
+    Route::resource('cart', CartController::class);
+    Route::get('/Shopping/cart', [CartController::class, 'index'])->name('cart_page');
 
 });
 
