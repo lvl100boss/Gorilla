@@ -9,6 +9,10 @@ PLEASE REFER TO INSTALLATION GUIDES IF NOT YET INSTALLED IN YOUR SYSTEMS
 To see if your system has composer installed run the command
 "composer -v" in your cmd.
 
+```
+composer -v
+```
+
 - 3rd, Run the command "composer install" in the terminal.
 - 4th, Run the command "cp .env.example .env" in the terminal.
 - 5th, Run the command "php artisan key:generate". in the terminal.
