@@ -1,3 +1,67 @@
+## CLONING AND SETTING UP LARAVEL PROJECT
+
+- 1st, Make sure that your branch is the same as the main branch.
+- 2nd, Open the Project On VS Code, and Press Ctrl + ` to Open the terminal (Make sure the directory is in the folder of TidyUp).
+
+# WARNING!!
+THIS IS ASSUMING YOU ALREADY INSTALLED COMPOSER IN YOUR SYSTEM
+PLEASE REFER TO INSTALLATION GUIDES IF NOT YET INSTALLED IN YOUR SYSTEMS
+To see if your system has composer installed run the command
+"composer -v" in your cmd.
+
+```
+composer -v
+```
+
+- 3rd, Run the command "composer install" in the terminal.
+```
+composer install
+```
+- 4th, Run the command "cp .env.example .env" in the terminal.
+```
+cp .env.example .env
+```
+- 5th, Run the command "php artisan key:generate". in the terminal.
+```
+php artisan key:generate
+```
+- 6th, inside the .env file update the default lines of code to this code as shown below:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=gorilla
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+(you may edit it according to your xampp settings)
+
+- 7th, run the command "php artisan storage:link" in the terminal.
+```
+php artisan storage:link
+```
+- 8th, make database in phpmyadmin. name it same with the DB_DATABASE in the .env file 
+- 9th, run the command "php artisan migrate" in the terminal.
+```
+php artisan migrate
+```
+- 10th, make sure you xampp's Apache and MySql is running then "php artisan serve" (dont close the terminal for it to keep the processses running in the background)
+  now copy the link, example "http://http://127.0.0.1:8000/", then paste it in your chosen broswer .
+```
+php artisan serve
+```
+- 11th, then make a new terminal by pressing the plus button in the top right of your terminal
+- 12th, run "npm run dev" in the terminal (also dont close this terminal for it to keep the proccesses running in the background).
+```
+npm run dev
+```
+- if there is no error congrats you are done.
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
