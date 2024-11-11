@@ -17,7 +17,9 @@ Route::get('/products', [ProductController::class, 'show'])->name('products');
 Route::view('/contact', 'posts.contact')->name('contact');
 Route::view('/aboutus', 'posts.aboutus')->name('aboutus');
 Route::view('/profile', 'user.profile')->name('profile');
-
+Route::view('/preview', 'posts.preview')->name('preview');
+Route::view('/cart', 'user.cart')->name('cart');
+Route::view('/myOrders', 'user.myOrders')->name('myOrders');
 
 
 

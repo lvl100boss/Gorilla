@@ -1,5 +1,51 @@
 import './bootstrap';
 
+function toggleDropdown() {
+    const dropDownElem = document.getElementById("nav-drop-down");
+    if (dropDownElem.classList.contains('hidden')) {
+        dropDownElem.classList.remove("hidden");
+        dropDownElem.classList.add("block");
+    } else {
+        dropDownElem.classList.remove("block");
+        dropDownElem.classList.add("hidden");
+    }
+}
+
+// Function to hide dropdown
+function hideDropdown() {
+    const dropDownElem = document.getElementById("nav-drop-down");
+    dropDownElem.classList.remove("block");
+    dropDownElem.classList.add("hidden");
+}
+
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Find the element that should trigger the dropdown
+    const dropdownTrigger = document.querySelector('.relative.group');
+    const dropDownElem = document.getElementById("nav-drop-down");
+    
+    // Add click event listener to the trigger element
+    if (dropdownTrigger) {
+        dropdownTrigger.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent this click from being caught by the document listener
+            toggleDropdown();
+        });
+    }
+
+    // Add click event listener to the document
+    document.addEventListener('click', (event) => {
+        // Check if the click is outside the dropdown and its trigger
+        if (!dropdownTrigger.contains(event.target) && !dropDownElem.contains(event.target)) {
+            hideDropdown();
+        }
+    });
+
+    // Prevent clicks inside the dropdown from closing it
+    dropDownElem.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+});
+
 
 window.showPreview = function(event) {
     const preview = document.getElementById('preview');

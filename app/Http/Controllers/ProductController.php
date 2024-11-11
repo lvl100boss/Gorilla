@@ -25,6 +25,7 @@ class ProductController extends Controller
     {
         $searchTerm = $request->input('search');
         $products = Product::where('name', 'like', '%' . $searchTerm . '%')
+            ->where('delete_status', 0)
             ->latest()
             ->paginate(15);
         return view('posts.products', ['products' => $products]);

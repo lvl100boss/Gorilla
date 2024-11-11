@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ env('APP_NAME') }}</title>
     {{-- <link rel="icon" href="C:/Codes/Laravel/Gorilla/storage/app/public/web-images/Gorilla.png"> --}}
-    @vite(['resources/css/app.css', 'resources/css/Icons/uicons-regular-rounded/css/uicons-regular-rounded.css', 'resources/css/Icons/uicons-regular-straight/css/uicons-regular-straight.css','resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/css/Icons/uicons-regular-rounded/css/uicons-regular-rounded.css', 'resources/css/Icons/uicons-regular-straight/css/uicons-regular-straight.css'])
 </head>
 <body>
     <header>
@@ -37,13 +37,16 @@
                     </li>
                     @endguest
                     @auth 
-                    <div class="relative group">
-                        <li class="links"><a href="{{ route('admin_products') }}" >- HI, {{ Str::upper(auth()->user()->username) }} -</a></li>
+                    <div onclick="dropdownShow()" class="relative group" id="profileNav">
+                        
                         @if (Auth()->user()->userType !== 'admin')
-                        <div class="hidden bg-medium-dark absolute shadow-lg rounded-lg -right-6 overflow-hidden w-32 group-hover:block">
-                            <li class="py-4 px-5 hover:bg-light-dark hover:text-accent"><a href="{{ route('profile') }}">ACCOUNT</a></li>
-                            <li class="py-4 px-5 hover:bg-light-dark hover:text-accent"><a href="">CART</a></li>
+                        <li class="links cursor-pointer">- HI, {{ Str::upper(auth()->user()->username) }} -</li>
+                        <div id="nav-drop-down" class="hidden bg-medium-dark absolute shadow-lg rounded-lg -right-8 overflow-hidden w-28">
+                            <li class="py-3 px-4  hover:bg-light-dark hover:text-accent"><a class="!text-xs" href="{{ route('profile') }}">ACCOUNT</a></li>
+                            <li class="py-3 px-4  hover:bg-light-dark hover:text-accent"><a class="!text-xs"  href="{{ route('cart') }}">CART</a></li>
                         </div>
+                        @else
+                            <li class="links cursor-pointer"><a href="{{ route('admin_products') }}" >- HI, {{ Str::upper(auth()->user()->username) }} -</a></li>
                         @endif 
                     </div>
                     <form method="post" action="{{ route('logout') }}">
@@ -73,5 +76,6 @@
             <p>Project Gorilla</p>
         </div>
     </footer>
+    <script src="{{ asset('js/app.js') }}"></script> 
 </body>
 </html>
