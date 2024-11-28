@@ -87,8 +87,3 @@ document.addEventListener('DOMContentLoaded', () => {
         container.scrollLeft = scrollLeft - scroll;
     }, 16)); // Throttle to 60fps (16ms)
 });
-
-
-
-
-

@@ -35,9 +35,9 @@ class ProductController extends Controller
     public function show_detail($id)
     {
         $product = Product::find($id);
-
+        
         if ($product) {
-            return view('posts.product_detail', ['product' => $product]);
+            return view('posts.preview', ['product' => $product]);
         }
 
         return redirect()->back()->with('error', 'Product not found');

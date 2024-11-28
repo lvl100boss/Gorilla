@@ -6,7 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ env('APP_NAME') }}</title>
     {{-- <link rel="icon" href="C:/Codes/Laravel/Gorilla/storage/app/public/web-images/Gorilla.png"> --}}
-    @vite(['resources/css/app.css', 'resources/css/Icons/uicons-regular-rounded/css/uicons-regular-rounded.css', 'resources/css/Icons/uicons-regular-straight/css/uicons-regular-straight.css','resources/js/app.js'])
+    @vite(['resources/css/app.css', 
+        'resources/css/Icons/uicons-regular-rounded/css/uicons-regular-rounded.css', 
+        'resources/css/Icons/uicons-regular-straight/css/uicons-regular-straight.css',
+        'resources/js/app.js',
+        'resources/js/jquery-3.7.1.min.js'
+        ])
 </head>
 <body>
     <header>
@@ -32,12 +37,16 @@
                     <li class="links"><a href="{{ route('login') }}" class="{{ request()->routeIs('login') ? 'text-accent' : 'text-white' }}">LOG IN</a></li>
                     <li class="links ">
                         <a href="{{ route('register') }}" class="">
-                            <button class="btn outline outline-accent outline-offset-4 outline-1" >SIGN UP</button>
+                            <button class="btn outline outline-accent outline-offset-4 outlinea-1" >SIGN UP</button>
                         </a>
                     </li>
                     @endguest
                     @auth 
-                    <li class="links"><a href="{{ route('admin_products') }}" >- HI, {{ Str::upper(auth()->user()->username) }} -</a></li>
+                    @if (Auth::user()->role == 'admin')
+                        <li class="links"><a href="{{ route('admin_dashboard') }}" >- HI, {{ Str::upper(auth()->user()->username) }} -</a></li>
+                    @else
+                        <li class="links"><a href="{{ route('user_dashboard') }}" >- HI, {{ Str::upper(auth()->user()->username) }} -</a></li>
+                    @endif
                     <li class="links"><a href="{{ route('cart_page') }}" > Cart</a></li>
                     
                 

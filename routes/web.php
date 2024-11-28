@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserController;
 
 // Routes for ProductController
 Route::get('/', [ProductController::class, 'index'])->name('home');
@@ -15,6 +16,7 @@ Route::get('/products', [ProductController::class, 'show'])->name('products');
 
 //EDITED. GO TO THE PRODUCT_DETAIL PAGE AND GET THE DETAILS OF THE PRODUCT
 Route::get('/products/{id}', [ProductController::class, 'show_detail'])->name('show_details');
+Route::post('/products/{id}', [CartController::class, 'store'])->name('cart_store');
 
 // Static pages
 Route::view('/contact', 'posts.contact')->name('contact');
@@ -28,10 +30,16 @@ Route::get('/searchProducts', [ProductController::class, 'searchProducts'])->nam
 //for Auth routes
 Route::middleware('auth')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    
-    //EDITED. this is for the add to cart
+
+    // user routes
+    Route::get('/user/dashboard', [UserController::class, 'index'])->name('user_dashboard');
+
+    //EDITED. this is for the cart
     Route::resource('cart', CartController::class);
     Route::get('/Shopping/cart', [CartController::class, 'index'])->name('cart_page');
+    Route::patch('/cart/update-quantity/{id}', [CartController::class, 'updateQuantity'])->name('cart_updateQuantity');
+    Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart_destroy');
+    Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart_checkout');
 
 });
 
